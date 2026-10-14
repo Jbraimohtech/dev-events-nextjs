@@ -1,25 +1,27 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
+import posthog from "posthog-js";
 
 const ExploreBtn = () => {
   return (
-    <button
-      type="button"
+    <Link
+      href="#events"
       id="explore-btn"
       className="mt-7 mx-auto"
-      onClick={() => console.log("I AM CLICKED")}
+      onClick={() => {
+        posthog.capture("event_exploration_started");
+      }}
     >
-      <a href="#events">
-        Explore Events
-        <Image
-          src="/icons/arrow-down.svg"
-          alt="arrow-down"
-          width={24}
-          height={24}
-        />
-      </a>
-    </button>
+      Explore events
+      <Image
+        src="/icons/arrow-down.svg"
+        alt=""
+        width={20}
+        height={20}
+      />
+    </Link>
   );
 };
 
