@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import LightRays from "@/components/LightRays";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -35,7 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         geist.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-dvh flex-col">
         <Navbar />
 
         <div className="absolute inset-0 top-0 z-[-1] min-h-screen">
@@ -55,7 +56,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             saturation={1}
           />
         </div>
-        <main>{children}</main>
+        <main className="flex-1">{children}</main>
+        <Footer />
       </body>
     </html>
   );

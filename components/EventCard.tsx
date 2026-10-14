@@ -11,22 +11,37 @@ interface Props {
   location: string;
   date: string;
   time: string;
+  category?: string;
+  isCommunityEvent?: boolean;
 }
 
-const EventCard = ({ title, image, slug, location, date, time }: Props) => {
+const EventCard = ({
+  title,
+  image,
+  slug,
+  location,
+  date,
+  time,
+  category,
+  isCommunityEvent = false,
+}: Props) => {
   return (
     <Link
       href={`/event/${slug}`}
       id="event-card"
       onClick={() => posthog.capture("event_selected", { event_slug: slug })}
     >
-      <Image
-        src={image}
-        alt={title}
-        width={410}
-        height={300}
-        className="poster"
-      />
+      <div className="poster-wrap">
+        <Image
+          src={image}
+          alt={title}
+          width={410}
+          height={300}
+          className="poster"
+        />
+        <span className="event-category">{category || "Developer event"}</span>
+        {isCommunityEvent && <span className="community-badge">COMMUNITY</span>}
+      </div>
 
       <div className="flex flex-row gap-2">
         <Image src="/icons/pin.svg" alt="location" width={14} height={14} />
